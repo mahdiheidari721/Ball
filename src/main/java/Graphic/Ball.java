@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Ball extends Circle {
     public static ArrayList<Ball> Allball=new ArrayList<>();
     ArrayList<String> Actions=new ArrayList<>();
+    public static ArrayList<String> AllActions=new ArrayList<>();
     String Name;
     double Vx;
     double Vy;
@@ -77,16 +78,18 @@ public class Ball extends Circle {
     public boolean hitB(){
         return this.getCenterY()+this.getRadius()>=600;
     }
-public void collision(){
+    public void collision(double v){
         for(int i=0;i<Allball.size();i++){
             if(this.getCenterY()==Allball.get(i).getCenterY()&&this.getCenterX()==Allball.get(i).getCenterX()){
                 continue;
             }
-          else  if(this.getBoundsInParent().intersects(Allball.get(i).getLayoutBounds())){
-
+            else  if(this.getBoundsInParent().intersects(Allball.get(i).getLayoutBounds())){
+               Allball.get(i).Actions.add("t = "+v+"s: "+Allball.get(i).getName()+"(x,y)=("+Allball.get(i).getCenterX()+","+Allball.get(i).getCenterY()+"),"+this.getName()+"(x,y)=("+this.getCenterX()+","+this.getCenterY()+")");
+                this.Actions.add("t = "+v+"s: "+this.getName()+"(x,y)=("+this.getCenterX()+","+this.getCenterY()+"),"+Allball.get(i).getName()+"(x,y)=("+Allball.get(i).getCenterX()+","+Allball.get(i).getCenterY()+")");
+AllActions.add("t = "+v+"s: "+this.getName()+"(x,y)=("+this.getCenterX()+","+this.getCenterY()+"),"+Allball.get(i).getName()+"(x,y)=("+Allball.get(i).getCenterX()+","+Allball.get(i).getCenterY()+")");
                 Vector v_n=new Vector(this.getCenterX()-Allball.get(i).getCenterX(),this.getCenterY()-Allball.get(i).getCenterY());
-            Vector v_un=new Vector(v_n.getX()/Math.sqrt(v_n.getX()*v_n.getX()+v_n.getY()*v_n.getY()),v_n.getY()/Math.sqrt(v_n.getX()*v_n.getX()+v_n.getY()*v_n.getY()) );
-              Vector v_ut=new Vector(-v_un.getY(), v_un.getX());
+                Vector v_un=new Vector(v_n.getX()/Math.sqrt(v_n.getX()*v_n.getX()+v_n.getY()*v_n.getY()),v_n.getY()/Math.sqrt(v_n.getX()*v_n.getX()+v_n.getY()*v_n.getY()) );
+                Vector v_ut=new Vector(-v_un.getY(), v_un.getX());
                 double v1n =  v_un.getX()*this.getVx()+ v_un.getY()*this.getVy();
                 double v1t = v_ut.getX()*this.getVx()+ v_ut.getY()*this.getVy();
                 double v2n =   v_un.getX()*Allball.get(i).getVx()+ v_un.getY()*Allball.get(i).getVy();
@@ -95,15 +98,15 @@ public void collision(){
                 double v2tPrime = v2t;
                 double v1nPrime=(v1n*(this.getMass()-Allball.get(i).getMass())+2*Allball.get(i).getMass()*v2n)/(this.getMass()+Allball.get(i).getMass());
                 double v2nPrime=(v2n*(Allball.get(i).getMass()-this.getMass())+2*this.getMass()*v1n)/(this.getMass()+Allball.get(i).getMass());
-Vector v_v1nPrime=new Vector(v_un.getX()*v1nPrime,v_un.getY()*v1nPrime);
-Vector v_v1tPrime=new Vector(v_ut.getX()*v1tPrime,v_ut.getY()*v1tPrime);
-Vector v_v2nPrime=new Vector(v_un.getX()*v2nPrime,v_un.getY()*v2nPrime);
-Vector v_v2tPrime=new Vector(v_ut.getX()*v2tPrime,v_ut.getY()*v2tPrime);
+                Vector v_v1nPrime=new Vector(v_un.getX()*v1nPrime,v_un.getY()*v1nPrime);
+                Vector v_v1tPrime=new Vector(v_ut.getX()*v1tPrime,v_ut.getY()*v1tPrime);
+                Vector v_v2nPrime=new Vector(v_un.getX()*v2nPrime,v_un.getY()*v2nPrime);
+                Vector v_v2tPrime=new Vector(v_ut.getX()*v2tPrime,v_ut.getY()*v2tPrime);
                 this.setVx(v_v1nPrime.getX()+v_v1tPrime.getX());
                 this.setVy(v_v1nPrime.getY()+v_v1tPrime.getY());
-               Allball.get(i).setVx(v_v2nPrime.getX()+v_v2tPrime.getX());
+                Allball.get(i).setVx(v_v2nPrime.getX()+v_v2tPrime.getX());
                 Allball.get(i).setVy(v_v2nPrime.getY()+v_v2tPrime.getY());
             }
         }
-}
+    }
 }

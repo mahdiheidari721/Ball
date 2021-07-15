@@ -1,11 +1,11 @@
 package Graphic;
- import javafx.fxml.FXMLLoader;
-        import javafx.scene.Parent;
-        import javafx.scene.Scene;
- import javafx.scene.layout.Pane;
- import javafx.stage.Stage;
-        import java.io.IOException;
-        import java.util.Stack;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.util.Stack;
 
 public class MainView {
     private Stage mainStage;
@@ -37,7 +37,7 @@ public class MainView {
             name += scene.charAt(i);
         }
         all.push(scene);
-         pane = FXMLLoader.load(Main.class.getResource(scene));
+        pane = FXMLLoader.load(Main.class.getResource(scene));
 
 
 

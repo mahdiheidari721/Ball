@@ -1,22 +1,15 @@
 Graphic/BallAnimation.java
  Graphic.BallAnimation
-Graphic/heivan.java
- Graphic.heivan
 Graphic/Ball.java
  Graphic.Ball
-Graphic/Main.java
- Graphic.Main
- Graphic.Main$1
- Graphic.Main$2
-Graphic/Controler.java
- Graphic.Controler
-Graphic/heivananimation.java
- Graphic.heivananimation
+Graphic/Start.java
+ Graphic.Start
 Graphic/Vector.java
  Graphic.Vector
 Graphic/ImageAnimation.java
  Graphic.ImageAnimation
-Graphic/asb.java
- Graphic.asb
+Graphic/Main.java
+ Graphic.Main
+ Graphic.Main$1
 Graphic/MainView.java
  Graphic.MainView

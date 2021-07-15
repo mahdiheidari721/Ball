@@ -13,10 +13,10 @@ public class ImageAnimation extends Transition {
         this.setCycleDuration(Duration.millis(1000));
         this.setCycleCount(1);
     }
-public  void duration(int t){
+    public  void duration(int t){
 
         this.setCycleDuration(Duration.millis(1000*t));
-}
+    }
     @Override
     protected void interpolate(double frac) {
         int frame= (int) Math.floor(frac*4);
